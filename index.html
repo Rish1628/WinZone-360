@@ -1,103 +1,118 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WINZONE 360 - Login/Register</title>
   <style>
     body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #fff9c4, #ffd700);
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #4b6cb7, #182848);
-      color: #fff;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     .container {
-      background: #ffffff;
-      color: #333;
-      padding: 30px 20px;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      background: #fff;
       width: 90%;
       max-width: 400px;
-      text-align: center;
-    }
-
-    .icon {
-      font-size: 40px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      color: #333;
     }
 
     h1 {
-      font-size: 22px;
-      margin-bottom: 10px;
+      text-align: center;
+      color: #FFD700;
+      font-size: 20px;
     }
 
     .warning {
-      font-size: 13px;
+      font-size: 14px;
       color: red;
-      margin-bottom: 20px;
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 15px;
     }
 
-    input[type="text"], input[type="password"] {
-      width: 90%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    .captcha-box {
-      margin: 10px 0;
-      font-size: 14px;
+    .icon {
+      text-align: center;
+      font-size: 40px;
     }
 
     .toggle-btns {
+      display: flex;
+      justify-content: center;
       margin-bottom: 15px;
     }
 
     .toggle-btns button {
-      padding: 8px 20px;
-      border: none;
-      cursor: pointer;
-      background: #ddd;
-      border-radius: 5px;
+      width: 45%;
       margin: 0 5px;
+      padding: 10px;
+      background: lightgray;
+      border: none;
+      border-radius: 5px;
       font-weight: bold;
     }
 
     .active-tab {
-      background: #4CAF50;
-      color: white;
+      background-color: #FFD700 !important;
+      color: black !important;
     }
 
-    .action-btn {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      font-size: 15px;
+    input {
+      width: 95%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #FFD700;
       border-radius: 5px;
-      cursor: pointer;
+      font-size: 14px;
+    }
+
+    label {
+      font-size: 13px;
+      float: left;
+    }
+
+    button.action-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #FFD700;
+      color: black;
+      border: none;
+      font-weight: bold;
       margin-top: 10px;
+      border-radius: 5px;
     }
 
     .hidden {
       display: none;
     }
 
-    label {
-      font-size: 13px;
+    .clearfix {
+      clear: both;
     }
 
-    @media(max-width: 500px) {
-      .container {
-        padding: 20px 10px;
-      }
+    .captcha-box {
+      margin-top: 10px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .captcha-box input {
+      width: 50%;
+      margin-top: 5px;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 { font-size: 18px; }
+      .warning { font-size: 12px; }
     }
   </style>
 </head>
@@ -105,7 +120,7 @@
   <div class="container">
     <div class="icon">🏆</div>
     <h1>WINZONE 360 में आपका स्वागत है।</h1>
-    <p class="warning">⚠️ कृपया अपनी जिम्मेदारी और जोखिम पर खेलें, इसकी लत लग सकती है।</p>
+    <p class="warning">कृपया अपनी जिम्मेदारी और जोखिम पर खेलें, इसकी लत लग सकती है।</p>
 
     <div class="toggle-btns">
       <button id="loginTab" class="active-tab">Login</button>
@@ -114,79 +129,91 @@
 
     <!-- Login Form -->
     <div id="loginForm">
-      <input type="text" id="loginMobile" placeholder="Mobile Number" required />
-      <input type="password" id="loginPassword" placeholder="Password" required />
+      <input type="text" id="loginMobile" placeholder="मोबाइल नंबर" required>
+      <input type="password" id="loginPassword" placeholder="पासवर्ड" required>
+
       <div class="captcha-box">
-        <label>Please 4 + 2 = ?</label><br />
-        <input type="text" id="captchaLogin" />
+        <label>कृपया 4 + 2 = ?</label><br>
+        <input type="text" id="captchaLogin">
       </div>
+
       <button class="action-btn" onclick="login()">Login</button>
     </div>
 
     <!-- Register Form -->
     <div id="registerForm" class="hidden">
-      <input type="text" id="regUsername" placeholder="Username" required />
-      <input type="text" id="regMobile" placeholder="Mobile Number" required />
-      <input type="text" id="regLocation" placeholder="Location" required />
-      <input type="password" id="regPassword" placeholder="Password" required />
-      <input type="text" id="regRefer" placeholder="Refer code (optional)" />
-      <label><input type="checkbox" id="agreeCheck" /> I Agree</label>
+      <input type="text" id="regUsername" placeholder="यूज़रनेम" required>
+      <input type="text" id="regMobile" placeholder="मोबाइल नंबर" required>
+      <input type="text" id="regLocation" placeholder="स्थान" required>
+      <input type="password" id="regPassword" placeholder="पासवर्ड" required>
+      <input type="text" id="regRefer" placeholder="रेफ़र कोड (वैकल्पिक)">
+      <label><input type="checkbox" id="agreeCheck"> मैं सहमत हूँ</label>
+
       <div class="captcha-box">
-        <label>Please 5 + 3 = ?</label><br />
-        <input type="text" id="captchaRegister" />
+        <label>कृपया 5 + 3 = ?</label><br>
+        <input type="text" id="captchaRegister">
       </div>
+
       <button class="action-btn" onclick="register()">Register</button>
     </div>
   </div>
 
   <script>
-    // Tab switching
-    document.getElementById("loginTab").onclick = () => {
-      document.getElementById("loginForm").classList.remove("hidden");
-      document.getElementById("registerForm").classList.add("hidden");
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    loginTab.onclick = () => {
+      loginForm.classList.remove("hidden");
+      registerForm.classList.add("hidden");
       loginTab.classList.add("active-tab");
       registerTab.classList.remove("active-tab");
     };
 
-    document.getElementById("registerTab").onclick = () => {
-      document.getElementById("loginForm").classList.add("hidden");
-      document.getElementById("registerForm").classList.remove("hidden");
+    registerTab.onclick = () => {
+      loginForm.classList.add("hidden");
+      registerForm.classList.remove("hidden");
       registerTab.classList.add("active-tab");
       loginTab.classList.remove("active-tab");
     };
 
-    // Login
     function login() {
       const mobile = document.getElementById("loginMobile").value.trim();
       const password = document.getElementById("loginPassword").value.trim();
       const captcha = document.getElementById("captchaLogin").value.trim();
 
       if (captcha !== "6") {
-        alert("Please enter correct captcha");
+        alert("कृपया सही कैप्चा दर्ज करें");
         return;
       }
 
-      alert("User login successful");
-      localStorage.setItem("role", "user");
-      window.location.href = "game.html";
+      if (mobile === "9999999999" && password === "admin123") {
+        alert("एडमिन लॉगिन सफल");
+        localStorage.setItem("role", "admin");
+        window.location.href = "admin.html";
+      } else {
+        alert("यूज़र लॉगिन सफल");
+        localStorage.setItem("role", "user");
+        window.location.href = "game.html";
+      }
     }
 
-    // Register
     function register() {
       const captcha = document.getElementById("captchaRegister").value.trim();
       const agree = document.getElementById("agreeCheck").checked;
 
       if (captcha !== "8") {
-        alert("Wrong captcha");
+        alert("गलत कैप्चा");
         return;
       }
 
       if (!agree) {
-        alert("Please agree to the terms");
+        alert("कृपया शर्तों से सहमत हों");
         return;
       }
 
-      alert("Registration successful");
+      alert("रजिस्ट्रेशन सफल");
       localStorage.setItem("role", "user");
       window.location.href = "game.html";
     }
