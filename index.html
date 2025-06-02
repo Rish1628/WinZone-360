@@ -1,0 +1,105 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WINZONE 360 - Login/Register</title>
+  <style>
+    /* आपकी सारी styling same रहेगी */
+    /* वही styles हैं जो आपने भेजे थे */
+    /* ... (same CSS as above) ... */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🏆</div>
+    <h1>WINZONE 360 में आपका स्वागत है।</h1>
+    <p class="warning">कृपया अपनी जिम्मेदारी और जोखिम पर खेलें, इसकी लत लग सकती है।</p>
+
+    <div class="toggle-btns">
+      <button id="loginTab" class="active-tab">Login</button>
+      <button id="registerTab">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+      <input type="text" id="loginMobile" placeholder="मोबाइल नंबर" required />
+      <input type="password" id="loginPassword" placeholder="पासवर्ड" required />
+      <div class="captcha-box">
+        <label>कृपया 4 + 2 = ?</label><br />
+        <input type="text" id="captchaLogin" />
+      </div>
+      <button class="action-btn" onclick="login()">Login</button>
+    </div>
+
+    <!-- Register Form -->
+    <div id="registerForm" class="hidden">
+      <input type="text" id="regUsername" placeholder="यूज़रनेम" required />
+      <input type="text" id="regMobile" placeholder="मोबाइल नंबर" required />
+      <input type="text" id="regLocation" placeholder="स्थान" required />
+      <input type="password" id="regPassword" placeholder="पासवर्ड" required />
+      <input type="text" id="regRefer" placeholder="रेफ़र कोड (वैकल्पिक)" />
+      <label><input type="checkbox" id="agreeCheck" /> मैं सहमत हूँ</label>
+      <div class="captcha-box">
+        <label>कृपया 5 + 3 = ?</label><br />
+        <input type="text" id="captchaRegister" />
+      </div>
+      <button class="action-btn" onclick="register()">Register</button>
+    </div>
+  </div>
+
+  <script>
+    // tab switch
+    document.getElementById("loginTab").onclick = () => {
+      document.getElementById("loginForm").classList.remove("hidden");
+      document.getElementById("registerForm").classList.add("hidden");
+      loginTab.classList.add("active-tab");
+      registerTab.classList.remove("active-tab");
+    };
+
+    document.getElementById("registerTab").onclick = () => {
+      document.getElementById("loginForm").classList.add("hidden");
+      document.getElementById("registerForm").classList.remove("hidden");
+      registerTab.classList.add("active-tab");
+      loginTab.classList.remove("active-tab");
+    };
+
+    // Only user login
+    function login() {
+      const mobile = document.getElementById("loginMobile").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+      const captcha = document.getElementById("captchaLogin").value.trim();
+
+      if (captcha !== "6") {
+        alert("कृपया सही कैप्चा दर्ज करें");
+        return;
+      }
+
+      // Simple user login (you can add Firebase later)
+      alert("यूज़र लॉगिन सफल");
+      localStorage.setItem("role", "user");
+      window.location.href = "game.html";
+    }
+
+    function register() {
+      const captcha = document.getElementById("captchaRegister").value.trim();
+      const agree = document.getElementById("agreeCheck").checked;
+
+      if (captcha !== "8") {
+        alert("गलत कैप्चा");
+        return;
+      }
+
+      if (!agree) {
+        alert("कृपया शर्तों से सहमत हों");
+        return;
+      }
+
+      alert("रजिस्ट्रेशन सफल");
+      localStorage.setItem("role", "user");
+      window.location.href = "game.html";
+    }
+  </script>
+</body>
+</html>
