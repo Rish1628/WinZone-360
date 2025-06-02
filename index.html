@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -6,16 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WINZONE 360 - Login/Register</title>
   <style>
-    /* आपकी सारी styling same रहेगी */
-    /* वही styles हैं जो आपने भेजे थे */
-    /* ... (same CSS as above) ... */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #4b6cb7, #182848);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      color: #333;
+      padding: 30px 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 40px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .warning {
+      font-size: 13px;
+      color: red;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .captcha-box {
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    .toggle-btns {
+      margin-bottom: 15px;
+    }
+
+    .toggle-btns button {
+      padding: 8px 20px;
+      border: none;
+      cursor: pointer;
+      background: #ddd;
+      border-radius: 5px;
+      margin: 0 5px;
+      font-weight: bold;
+    }
+
+    .active-tab {
+      background: #4CAF50;
+      color: white;
+    }
+
+    .action-btn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    label {
+      font-size: 13px;
+    }
+
+    @media(max-width: 500px) {
+      .container {
+        padding: 20px 10px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="icon">🏆</div>
     <h1>WINZONE 360 में आपका स्वागत है।</h1>
-    <p class="warning">कृपया अपनी जिम्मेदारी और जोखिम पर खेलें, इसकी लत लग सकती है।</p>
+    <p class="warning">⚠️ कृपया अपनी जिम्मेदारी और जोखिम पर खेलें, इसकी लत लग सकती है।</p>
 
     <div class="toggle-btns">
       <button id="loginTab" class="active-tab">Login</button>
@@ -50,7 +140,7 @@
   </div>
 
   <script>
-    // tab switch
+    // Tab switching
     document.getElementById("loginTab").onclick = () => {
       document.getElementById("loginForm").classList.remove("hidden");
       document.getElementById("registerForm").classList.add("hidden");
@@ -65,7 +155,7 @@
       loginTab.classList.remove("active-tab");
     };
 
-    // Only user login
+    // Login
     function login() {
       const mobile = document.getElementById("loginMobile").value.trim();
       const password = document.getElementById("loginPassword").value.trim();
@@ -76,12 +166,12 @@
         return;
       }
 
-      // Simple user login (you can add Firebase later)
       alert("यूज़र लॉगिन सफल");
       localStorage.setItem("role", "user");
       window.location.href = "game.html";
     }
 
+    // Register
     function register() {
       const captcha = document.getElementById("captchaRegister").value.trim();
       const agree = document.getElementById("agreeCheck").checked;
