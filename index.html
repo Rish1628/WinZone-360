@@ -114,10 +114,10 @@
 
     <!-- Login Form -->
     <div id="loginForm">
-      <input type="text" id="loginMobile" placeholder="मोबाइल नंबर" required />
-      <input type="password" id="loginPassword" placeholder="पासवर्ड" required />
+      <input type="text" id="loginMobile" placeholder="Mobile Number" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
       <div class="captcha-box">
-        <label>कृपया 4 + 2 = ?</label><br />
+        <label>Please 4 + 2 = ?</label><br />
         <input type="text" id="captchaLogin" />
       </div>
       <button class="action-btn" onclick="login()">Login</button>
@@ -125,14 +125,14 @@
 
     <!-- Register Form -->
     <div id="registerForm" class="hidden">
-      <input type="text" id="regUsername" placeholder="यूज़रनेम" required />
-      <input type="text" id="regMobile" placeholder="मोबाइल नंबर" required />
-      <input type="text" id="regLocation" placeholder="स्थान" required />
-      <input type="password" id="regPassword" placeholder="पासवर्ड" required />
-      <input type="text" id="regRefer" placeholder="रेफ़र कोड (वैकल्पिक)" />
-      <label><input type="checkbox" id="agreeCheck" /> मैं सहमत हूँ</label>
+      <input type="text" id="regUsername" placeholder="Username" required />
+      <input type="text" id="regMobile" placeholder="Mobile Number" required />
+      <input type="text" id="regLocation" placeholder="Location" required />
+      <input type="password" id="regPassword" placeholder="Password" required />
+      <input type="text" id="regRefer" placeholder="Refer code (optional)" />
+      <label><input type="checkbox" id="agreeCheck" /> I Agree</label>
       <div class="captcha-box">
-        <label>कृपया 5 + 3 = ?</label><br />
+        <label>Please 5 + 3 = ?</label><br />
         <input type="text" id="captchaRegister" />
       </div>
       <button class="action-btn" onclick="register()">Register</button>
@@ -162,11 +162,11 @@
       const captcha = document.getElementById("captchaLogin").value.trim();
 
       if (captcha !== "6") {
-        alert("कृपया सही कैप्चा दर्ज करें");
+        alert("Please enter correct captcha");
         return;
       }
 
-      alert("यूज़र लॉगिन सफल");
+      alert("User login successful");
       localStorage.setItem("role", "user");
       window.location.href = "game.html";
     }
@@ -177,16 +177,16 @@
       const agree = document.getElementById("agreeCheck").checked;
 
       if (captcha !== "8") {
-        alert("गलत कैप्चा");
+        alert("Wrong captcha");
         return;
       }
 
       if (!agree) {
-        alert("कृपया शर्तों से सहमत हों");
+        alert("Please agree to the terms");
         return;
       }
 
-      alert("रजिस्ट्रेशन सफल");
+      alert("Registration successful");
       localStorage.setItem("role", "user");
       window.location.href = "game.html";
     }
